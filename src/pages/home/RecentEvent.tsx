@@ -12,7 +12,7 @@ const RecentEvent = () => {
   const {data: recentEvents, isLoading} = useGetRecentEvents()
 
   if(isLoading){
-    return <p>Loading ....</p>
+    return <p className='text-center font-semibold text-lg'>Loading ....</p>
   }
   return (
     <div className="custom-container my-10 md:my-28">

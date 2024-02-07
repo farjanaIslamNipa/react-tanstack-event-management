@@ -6,7 +6,7 @@ const EventItemSection = () => {
   const {data: events, isLoading} = useGetEvents();
 
   if(isLoading){
-    return <p>Loading ....</p>
+    return <p className='text-center font-semibold text-lg'>Loading ....</p>
   }
   return (
     <div className="custom-container my-10 md:my-28 z-40 relative">

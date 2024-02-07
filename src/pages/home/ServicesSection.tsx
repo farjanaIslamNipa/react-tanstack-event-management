@@ -4,11 +4,10 @@ import {ReactNode} from 'react';
 import {TService} from '../../types';
 
 const ServicesSection = () => {
-  const {data: services, isLoading, isError} = useGetServices()
+  const { data: services, isLoading } = useGetServices()
 
-  console.log(services, isLoading, isError, 'data')
   if(isLoading){
-    return <p>Loading ....</p>
+    return <p className='text-center font-semibold text-lg'>Loading ....</p>
   }
   return (
     <div className="custom-container my-8 sm:my-12 lg:my-20">
