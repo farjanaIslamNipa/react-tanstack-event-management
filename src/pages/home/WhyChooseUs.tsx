@@ -4,7 +4,10 @@ import support from '../../assets/images/24-seven.svg'
 import expert from '../../assets/images/expert.svg'
 import reWork from '../../assets/images/re-work.svg'
 
+
+
 const WhyChooseUs = () => {
+
   return (
     <div className="why-choose-bg mt-8 md:mt-16 lg:mt-24">
     <div className="custom-container">
@@ -12,7 +15,7 @@ const WhyChooseUs = () => {
         <div className="hidden lg:flex justify-end">
           <img src={whyChooseImg} alt="" className="why-choose-img h-[600px]" />
         </div>
-        <div className="why-choose-box bg-white py-6 sm:py-14 mb-4 px-5 sm:px-10 rounded-3xl w-full lg:w-[700px] xl:w-[800px]">
+        <div data-aos="fade-up" className="why-choose-box bg-white py-6 sm:py-14 mb-4 px-5 sm:px-10 rounded-3xl w-full lg:w-[700px] xl:w-[800px]">
           <div className="why-choose-title ml-3 md:ml-6 mb-4 md:mb-6"><h1 className="pt-3 section-title">Why choose us?</h1></div>
           <div className="sm:px-5 px-2">
             <p className="text-base md:text-lg">Your satisfaction is our goal. If you’re not happy. Please let us know, we will work with you to make it right. </p>

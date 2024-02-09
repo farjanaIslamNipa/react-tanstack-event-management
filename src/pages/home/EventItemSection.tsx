@@ -1,12 +1,13 @@
 import {useGetEvents} from '../../api/event/useGetEvents'
 import {TEvent} from '../../types'
 import cn from '../../utils/cn'
+import defaultEvent from '../../assets/images/event-item-4.png'
 
 const EventItemSection = () => {
   const {data: events, isLoading} = useGetEvents();
 
   if(isLoading){
-    return <p className='text-center font-semibold text-lg'>Loading ....</p>
+    return <p className='text-center text-lg font-semibold text-blue-600'>Loading ....</p>
   }
   return (
     <div className="custom-container my-10 md:my-28 z-40 relative">
@@ -22,7 +23,10 @@ const EventItemSection = () => {
             'col-span-12 sm:col-span-6' : index === 0 || index === 1
           },
           {
-            'col-span-12 sm:col-span-4' : index === 2 || index === 3 || index === 4
+            'col-span-12 sm:col-span-4' : index >= 2
+          },
+          {
+            'bg-[#f9b16e33]' : !event?.bgColor
           }
           )}
           >
@@ -31,10 +35,14 @@ const EventItemSection = () => {
               'h-[160px] lg:h-[332px]' : index === 0 || index === 1
             },
             {
-              'h-[160px] lg:h-[187px]' : index === 2 || index === 3 || index === 4
+              'h-[160px] lg:h-[187px]' : index >= 2
             }
           )}>
-            <img src={event?.img} alt="Event" className='h-full w-full object-cover event-img' />
+            {
+              event?.img ? <img src={event?.img} alt="Event" className='h-full w-full object-cover event-img' />
+              : <img src={defaultEvent} alt="Event" className='h-full w-full object-cover event-img' />
+            }
+            
           </div>
           <h3 className='text-lg md:text-[24px] font-semibold mt-4 '>{event?.title}</h3>
         </div>)

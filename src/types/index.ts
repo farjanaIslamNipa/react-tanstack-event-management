@@ -1,4 +1,5 @@
 export type TService = {
+  _id?: string;
   title: string;
   img?: string;
   description: string;
@@ -7,6 +8,7 @@ export type TService = {
 }
 
 export type TEvent = {
+  _id?: string;
   title: string;
   img?: string;
   bgColor?: string;
@@ -14,6 +16,7 @@ export type TEvent = {
 }
 
 export type TRecentEvent = {
+  _id?: string;
   title: string;
   img?: string;
   owner: string;
