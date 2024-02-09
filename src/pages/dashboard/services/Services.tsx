@@ -3,17 +3,38 @@ import editIcon from '../../../assets/images/edit.svg'
 import deleteIcon from '../../../assets/images/delete.svg'
 import {useGetServices} from "../../../api/services/useGetServices";
 import {TService} from '../../../types';
-import {NavLink} from 'react-router-dom';
+import {NavLink, useNavigate} from 'react-router-dom';
+import {useMutation, useQueryClient} from '@tanstack/react-query';
+import {deleteService} from '../../../api/services';
+import defaultImg from '../../../assets/images/default.png'
 
 
 const Services = () => {
+  const navigate = useNavigate()
   const {data: services, isLoading} = useGetServices()
 
-  if(isLoading){
-    return <p className='text-center text-lg font-semibold text-blue-600'>Loading ....</p>
+  const queryClient = useQueryClient();
+
+  const deleteEventMutation = useMutation({
+    mutationFn: deleteService,
+    onSuccess: () => {
+      queryClient.invalidateQueries({queryKey: ['services']})
+    }
+  })
+
+  const handleDeleteEvent = (id: string) => {
+    deleteEventMutation.mutate(id)
   }
+
+
+  if(isLoading){
+    return <p className='text-center text-lg font-semibold text-[#922F86] py-4'>Loading ....</p>
+  }
+
+
+
   return (
-    <div className="px-10 pb-14">
+    <div className="px-4 sm:px-10 pb-14">
       <div className="flex items-center justify-between mt-5">
         <h5 className="font-semibold text-xl text-gray-700">Services List</h5>
         <NavLink to="/dashboard/add-service" className="bg-[#922F86] text-white py-2 px-3 rounded-md text-sm">Add Service</NavLink>
@@ -34,24 +55,29 @@ const Services = () => {
           <tbody>
             {
               services?.data?.length > 0 && 
-              services?.data?.map((service : TService, index: number) => <tr className="border-b" key={service.title}>
+              services?.data?.map((service : TService, index: number) => <tr className="border-b" key={service._id}>
               <td className="px-6 py-4 font-semibold text-base">{index + 1}.</td>
               <td className="px-6 py-4">
                 <div className="h-14 w-14 rounded-full">
-                  <img src={service?.img} alt="" className="h-full w-full object-cover rounded-full" />
+                  {
+                    service?.img ?
+                    <img src={service?.img} alt="" className="h-full w-full object-cover rounded-full" />
+                    :
+                    <img src={defaultImg} alt="" className="h-full w-full object-cover rounded-full" />
+                  }
                 </div>
               </td>
               <td className="px-4 py-4 font-medium text-base">{service?.title}</td>
               <td className="px-4 py-4">{service?.description.length > 150 ?  `${(service?.description).slice(0, 150)}...` : service?.description}</td>
               <td className="px-4 py-4 space-y-1">{
-                service?.facilities?.map((item : string) => <p className="text-sm">{item}</p>)
+                service?.facilities?.map((item : string, index: number) => <p className="text-sm" key={index}>{item}</p>)
               }</td>
               <td className="px-4 py-4">
                 <div className="flex gap-3 items-end">
-                  <button className=" py-2">
+                  <button onClick={() => navigate(`/dashboard/edit-service/${service?._id}`)} className=" py-2">
                     <img src={editIcon} alt="" className="h-5 w-5" />
                   </button>
-                  <button className=" py-2">
+                  <button onClick={() => handleDeleteEvent(service?._id as string)} className=" py-2">
                     <img src={deleteIcon} alt="" className="h-5 w-5" />
                   </button>
                 </div>

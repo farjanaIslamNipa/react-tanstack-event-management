@@ -11,6 +11,7 @@ import AddEvent from "../pages/dashboard/events/AddEvent";
 import EditEvent from "../pages/dashboard/events/EditEvent";
 import AddRecentEvent from "../pages/dashboard/recentEvents/AddRecentEvent";
 import EditRecentEvent from "../pages/dashboard/recentEvents/EditRecentEvent";
+import EditService from "../pages/dashboard/services/EditService";
 
 const router = createBrowserRouter([
   {
@@ -42,6 +43,10 @@ const router = createBrowserRouter([
       {
         path: "add-service",
         element: <AddService />,
+      },
+      {
+        path: "edit-service/:id",
+        element: <EditService />,
       },
       {
         path: "add-event",

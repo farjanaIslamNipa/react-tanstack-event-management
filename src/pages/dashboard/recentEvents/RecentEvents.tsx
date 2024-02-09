@@ -5,6 +5,7 @@ import {TRecentEvent} from "../../../types";
 import editIcon from '../../../assets/images/edit.svg'
 import deleteIcon from '../../../assets/images/delete.svg'
 import {deleteRecentEvent} from "../../../api/recentEvents";
+import defaultImg from '../../../assets/images/default.png'
 
 
 const RecentEvents = () => {
@@ -26,10 +27,10 @@ const RecentEvents = () => {
   }
 
   if(isLoading){
-    return <p className='text-center text-lg font-semibold text-gray-700'>Loading ....</p>
+    return <p className='text-center text-lg font-semibold text-[#922F86] py-4'>Loading ....</p>
   }
   return (
-    <div className="px-10 pb-14">
+    <div className="px-4 sm:px-10 pb-14">
       <div className="flex items-center justify-between mt-5">
         <h5 className="font-semibold text-xl text-gray-700">Recent Events List</h5>
         <NavLink to="/dashboard/add-recent-event" className="bg-[#922F86] text-white py-2 px-3 rounded-md text-sm">Add recent Event</NavLink>
@@ -53,7 +54,12 @@ const RecentEvents = () => {
               <td className="px-6 py-4 font-semibold text-base">{index + 1}.</td>
               <td className="px-4 py-2 h-[65px]">
                 <div className="rounded-md">
-                  <img src={event?.img} alt="" className="h-20 w-24 object-cover rounded-md" />
+                  {
+                    event?.img ? 
+                    <img src={event?.img} alt="" className="h-20 w-24 object-cover rounded-md" />
+                    :
+                    <img src={defaultImg} alt="" className="h-20 w-24 object-cover rounded-md" />
+                  }
                 </div>
               </td>
               <td className="px-4 py-4 text-sm">{event?.title}</td>

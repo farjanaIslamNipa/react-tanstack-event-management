@@ -6,6 +6,7 @@ import {NavLink, useNavigate} from 'react-router-dom';
 import {useGetEvents} from '../../../api/event/useGetEvents';
 import {useMutation, useQueryClient} from '@tanstack/react-query';
 import {deleteEvent} from '../../../api/event';
+import defaultImg from '../../../assets/images/default.png'
 
 
 const Events = () => {
@@ -27,10 +28,10 @@ const Events = () => {
   }
 
   if(isLoading){
-    return <p className='text-center text-lg font-semibold text-gray-700'>Loading ....</p>
+    return <p className='text-center text-lg font-semibold text-[#922F86] py-4'>Loading ....</p>
   }
   return (
-    <div className="px-10 pb-14">
+    <div className="px-4 sm:px-10 pb-14">
       <div className="flex items-center justify-between mt-5">
         <h5 className="font-semibold text-xl text-gray-700">Events List</h5>
         <NavLink to="/dashboard/add-event" className="bg-[#922F86] text-white py-2 px-3 rounded-md text-sm">Add Event</NavLink>
@@ -52,8 +53,13 @@ const Events = () => {
               events?.data?.map((event : TEvent, index: number) => <tr className="border-b" key={event.title}>
               <td className="px-6 py-4 font-semibold text-base">{index + 1}.</td>
               <td className="px-6 py-4">
-                <div className="max-h-[100px] max-w-[180px] rounded-md">
-                  <img src={event?.img} alt="" className="h-full w-full object-cover rounded-md" />
+                <div className="rounded-md">
+                  {
+                    event?.img ?
+                    <img src={event?.img} alt="" className="max-h-[100px] max-w-[180px] object-cover rounded-md" />
+                    :
+                    <img src={defaultImg} alt="" className="max-h-[100px] max-w-[180px] object-cover rounded-md" />
+                  }
                 </div>
               </td>
               <td className="px-4 py-4 font-medium text-base">{event?.title}</td>

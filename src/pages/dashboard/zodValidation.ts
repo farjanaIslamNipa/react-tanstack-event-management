@@ -1,5 +1,12 @@
 import {z} from "zod"
 
+export const ServiceSchema = z.object({
+  title: z.string().min(1, {message: 'This field is required'}),
+  description: z.string().min(1, {message: 'This field is required'}),
+  img: z.string().optional(),
+  facilities: z.array(z.string()).optional(),
+})
+
 export const EventSchema = z.object({
   title: z.string().min(1, {message: 'This field is required'}),
   bgColor: z.string().optional(),

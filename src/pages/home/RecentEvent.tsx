@@ -7,13 +7,13 @@ import arrowNext from '../../assets/images/arrow-left.svg'
 import arrowPrev from '../../assets/images/arrow-right.svg'
 import {useGetRecentEvents} from '../../api/recentEvents/useGetRecentEvents';
 import {TRecentEvent} from '../../types';
-import defaultEvent from '../../assets/images/recent-event-3.png'
+import defaultImg from '../../assets/images/default.png'
 
 const RecentEvent = () => {
   const {data: recentEvents, isLoading} = useGetRecentEvents()
 
   if(isLoading){
-    return <p className='text-center text-lg font-semibold text-blue-600'>Loading ....</p>
+    return <p className='text-center text-lg font-semibold text-[#922F86] py-4'>Loading ....</p>
   }
   return (
     <div className="custom-container my-10 md:my-28">
@@ -62,7 +62,7 @@ const RecentEvent = () => {
                   event?.img ? 
                   <img src={event?.img} alt={event?.title} className='rounded-md rounded-b-none h-full w-full object-cover' />
                   :
-                  <img src={defaultEvent} alt={event?.title} className='rounded-md rounded-b-none h-full w-full object-cover' />
+                  <img src={defaultImg} alt={event?.title} className='rounded-md rounded-b-none h-full w-full object-cover' />
                 }
               </div>
               <div className="p-4">

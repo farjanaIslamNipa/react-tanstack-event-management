@@ -11,8 +11,11 @@ import gallery7 from '../../assets/images/gallery-7.png'
 import gallery8 from '../../assets/images/gallery-8.png'
 import gallery9 from '../../assets/images/gallery-9.png'
 import gallery10 from '../../assets/images/gallery-10.png'
+import {motion} from 'framer-motion'
+import useScrollGrow from '../../hooks/userScrollGlow'
 
 const GallerySection = () => {
+  const {ref, style} = useScrollGrow()
   return (
     <div className="custom-container pt-0 lg:pt-10 pb-16 sm:pb-[100px] lg:pb-[160px] relative z-40">
       <img src={galleryIconTop} alt="" className='h-[100px] lg:h-[175px] absolute left-[2%] sm:left-[15%] md:left-[42%] top-[42%] sm:top-[35%] md:top-[-20px] hidden sm:block' />
@@ -40,7 +43,7 @@ const GallerySection = () => {
             </div>
           </div>
         </div>
-        <div className='col-span-12 md:col-span-6 xl:col-span-7'>
+        <motion.div style={style} ref={ref} className='col-span-12 md:col-span-6 xl:col-span-7'>
           {/* <img src={gallery} alt="" /> */}
           <div className="flex gap-2 justify-center md:justify-end mt-8 md:mt-0">
             <div className='flex flex-col justify-middle items-end mt-[100px]'>
@@ -82,7 +85,7 @@ const GallerySection = () => {
               </div>
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </div>
   );

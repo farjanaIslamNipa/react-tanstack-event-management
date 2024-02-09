@@ -1,18 +1,42 @@
 import mobile from '../../assets/images/phone-3.png'
 import email from '../../assets/images/email.svg'
-import phone from '../../assets/images/phone.svg'
+import phoneImg from '../../assets/images/phone.svg'
 import map from '../../assets/images/map.svg'
+import {motion} from 'framer-motion';
+
+const bubbling = {
+  initial :{ 
+    y: 0,
+   },
+  animate: { 
+    y: 20,
+    transition: {
+      duration: 1,
+      y:{
+        repeat: Infinity,
+        duration: 4,
+        repeatType: 'reverse',
+        ease: 'easeInOut'
+      }
+    } 
+  }
+}
 
 const ContactFormSection = () => {
+
   return (
     <div className="mt-16 md:mt-20 bg-gray-100 pt-12 pb-16 md:pb-20">
     <div className="custom-container">
       <h1 className="text-center text-[28px] sm:text-[38px] md:text-[45px] font-bold">Have Questions? Contact us</h1>
       <div className="mt-8 md:mt-14 bg-white mx-0 sm:mx-10 md:mx-0 xl:mx-20 2xl:mx-36 rounded-2xl pl-8 lg:pl-10 2xl:pl-20 pr-8 lg:pr-16 2xl:pr-24 py-12">
         <div className="grid grid-cols-12 gap-0 md:gap-8">
-          <div className="col-span-5 hidden lg:block">
+          <motion.div
+           variants={bubbling} 
+           initial="initial"
+           animate="animate" 
+           className="col-span-5 hidden lg:block">
             <img src={mobile} alt="" className="p-0 xl:p-4" />
-          </div>
+          </motion.div>
           <div className="col-span-12 lg:col-span-7 pt-0 md:pt-2 xl:pt-8">
             <div className="">
               <p className="font-semibold text-xl mb-3 ">Fill this form, it's easy</p>
@@ -46,7 +70,7 @@ const ContactFormSection = () => {
             <a href="mailto:webiizard08@gmail.com">event360@gmail.com</a>
           </div>
           <div className="flex items-center gap-2 md:gap-1 lg:gap-2">
-            <img src={phone} alt="" className="h-8 lg:h-10" />
+            <img src={phoneImg} alt="" className="h-8 lg:h-10" />
             <a href="tel:01700557663">01700557003</a>
           </div>
         </div>

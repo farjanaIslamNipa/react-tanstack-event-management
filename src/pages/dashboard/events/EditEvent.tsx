@@ -30,11 +30,11 @@ const EditEvent = () => {
   }
 
   if(isLoading){
-    return <p className='text-center text-lg font-semibold text-gray-700'>Loading ....</p>
+    return <p className='text-center text-lg font-semibold text-[#922F86] py-4'>Loading ....</p>
   }
   return (
-    <div className="px-10 mt-10">
-      <div className="bg-white max-w-[80%] border border-gray-200 shadow-md rounded-lg py-10 px-14">
+    <div className="px-4 sm:px-10 mt-10">
+      <div className="bg-white w-full max-w-[100%] lg:max-w-[80%] border border-gray-200 shadow-md rounded-lg py-5 sm:py-10 px-4 sm:px-14">
         <h5 className="text-lg font-medium mb-4">Update Event</h5>
         <div className="mt-6">
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
